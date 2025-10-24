@@ -66,20 +66,14 @@ namespace MorseCodeTranslator
 
         public IEnumerable<char> Revese(string input)
         {
-            foreach (char x in input.ToLower()) 
+            foreach (char x in input.ToLower())
             {
-                if (x == '-') 
+                yield return x switch
                 {
-                    yield return '.';
-                }
-                else if (x == '.')
-                {
-                    yield return '-';
-                }
-                else
-                {
-                    yield return x;
-                }
+                    '-' => '.',
+                    '.' => '-',
+                    _ => x,
+                };
             }
         }
     }
